@@ -1,0 +1,10 @@
+pub mod about_us;
+pub mod blogs;
+pub mod checkout;
+pub mod contact;
+pub mod home;
+pub mod info;
+pub mod login;
+pub mod shop;
+pub mod shopping_cart;
+pub mod signup;
