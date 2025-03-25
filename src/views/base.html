@@ -3,9 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
+    <header>
+        <div class="grid grid-cols-2 gap-[10vm] bg-black p-2 pl-40">
+            <div>
+                <p class="text-white font-sans text-md pl-40">Free Shipping. 30-day return or refund guarantee</p>
+            </div>
+    
+            <div class="flex flex-auto">
+                <div><a class="text-white p-6 ml-60 font-sans text-md" href="/login">Login</a></div>
+                <div><a class="text-white font-sans text-md" href="/faqs">FAQs</a></div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div>
+            <h2>Store</h2>
+        </div>
+        <div>
+            <a href="/">Home</a>
+            <a href="/shop">Shop</a>
+            <a href="/info">Info</a>
+            <a href="/blogs">Blogs</a>
+            <a href="/contact">Contact</a>
+            <a href="/checkout">Checkout</a>
+            <a href="/shopping_cart">Shopping Cart</a>
+            <a href="/signup">Signup</a>
+            <a href="/login">LogIn</a>
+        </div>
+    </nav>
+
     {% block body %} {% endblock %}
+
+    <footer>
+        <div>
+            <div>
+                <h2>Store</h2>
+                <p>The customer is at the heart of our unique business model</p>
+            </div>
+
+            <div>
+                <a href="/">Home</a>
+                <a href="/shop">Shop</a>
+                <a href="/info">Info</a>
+                <a href="/blogs">Blogs</a>
+            </div>
+
+            <div>
+                <a href="/contact">Contact</a>
+                <a href="/checkout">Checkout</a>
+                <a href="/shopping_cart">Shopping Cart</a>
+            </div>
+
+            <div>
+                <h2>Newsletter</h2>
+                <input type="text" placeholder="Your email">
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

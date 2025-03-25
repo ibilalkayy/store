@@ -1,6 +1,6 @@
 use crate::controllers::pages::{
     about_us::about_us, blogs::blogs, checkout::checkout, contact::contact, home::home, info::info,
-    login::login, shop::shop, shopping_cart::shopping_cart, signup::signup,
+    login::login, shop::shop, shopping_cart::shopping_cart, signup::signup, faqs::faqs,
 };
 use actix_web::web;
 
@@ -14,5 +14,6 @@ pub fn configure_service(cfg: &mut web::ServiceConfig) {
         .service(shopping_cart)
         .service(checkout)
         .service(signup)
-        .service(login);
+        .service(login)
+        .service(faqs);
 }

@@ -8,3 +8,4 @@ pub mod login;
 pub mod shop;
 pub mod shopping_cart;
 pub mod signup;
+pub mod faqs;
