@@ -6,7 +6,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <title>{% block title %} {% endblock %}</title>
 </head>
-<body>
+<body class="bg-gray-300">
     <header>
         <div class="grid grid-cols-2 gap-[10vm] bg-black p-2 pl-40">
             <div>
@@ -14,54 +14,74 @@
             </div>
     
             <div class="flex flex-auto">
-                <div><a class="text-white p-6 ml-60 font-sans text-md" href="/login">Login</a></div>
-                <div><a class="text-white font-sans text-md" href="/faqs">FAQs</a></div>
+                <div><a class="text-white p-6 ml-70 font-sans text-md hover:text-gray-300" href="/login">LOGIN</a></div>
+                <div><a class="text-white font-sans text-md hover:text-gray-300" href="/faqs">FAQs</a></div>
             </div>
         </div>
     </header>
 
     <nav>
-        <div>
-            <h2>Store</h2>
-        </div>
-        <div>
-            <a href="/">Home</a>
-            <a href="/shop">Shop</a>
-            <a href="/info">Info</a>
-            <a href="/blogs">Blogs</a>
-            <a href="/contact">Contact</a>
-            <a href="/checkout">Checkout</a>
-            <a href="/shopping_cart">Shopping Cart</a>
-            <a href="/signup">Signup</a>
-            <a href="/login">LogIn</a>
+        <div class="grid grid-cols-3 gap-[10vm] bg-white">
+            <div class="pl-50 p-5">
+                <a href="/">
+                    <h2 class="text-2xl font-bold">Store <span class="text-red-500">.</span></h2>
+                </a>
+            </div>
+
+            <div class="p-5">
+                <a class="p-5 hover:text-gray-500" href="/">Home</a>
+                <a class="p-5 hover:text-gray-500" href="/shop">Shop</a>
+                <a class="p-5 hover:text-gray-500" href="/info">Info</a>
+                <a class="p-5 hover:text-gray-500" href="/blogs">Blogs</a>
+                <a class="p-5 hover:text-gray-500" href="/contact">Contact</a>
+                <!-- <a class="ml-2" href="/checkout">Checkout</a>
+                <a class="ml-2" href="/shopping_cart">Shopping Cart</a>
+                <a class="ml-2" href="/signup">Signup</a>
+                <a class="ml-2" href="/login">LogIn</a> -->
+            </div>
+
+            <div class="pl-25 p-5">
+                <input type="text" placeholder="Search" class="rounded-lg border border-gray-400 border-2 pl-3 hover:border-gray-300 size-9 w-3xs">
+                <button class="ml-3 pl-5 pt-1 pb-1 pr-4 bg-black rounded-lg border border-black border-2 text-white hover:bg-gray-700 hover:border-gray-700">Search</button>
+            </div>
         </div>
     </nav>
 
     {% block body %} {% endblock %}
 
     <footer>
-        <div>
+        <div class="grid grid-cols-5 gap-20 bg-black pl-60 pt-10 pb-10">
             <div>
-                <h2>Store</h2>
-                <p>The customer is at the heart of our unique business model</p>
+                <a href="/">
+                    <h2 class="text-2xl font-bold pb-3 text-white">Store <span class="text-red-500">.</span></h2>
+                </a>
+                <p class="text-white">The customer is at the heart</p>
+                <p class="text-white">of our unique business model</p>
+            </div>
+
+            <div class="flex flex-col">
+                <h1 class="text-white font-bold text-xl font-sans mb-3">Shopping</h1>
+                <a href="/" class="text-white hover:text-gray-400">Home</a>
+                <a href="/shop" class="text-white hover:text-gray-400">Shop</a>
+                <a href="/info" class="text-white hover:text-gray-400">Info</a>
+                <a href="/blogs" class="text-white hover:text-gray-400">Blogs</a>
+            </div>
+
+            <div class="flex flex-col">
+                <h1 class="font-bold text-xl font-sans mb-3 text-white">Shopping</h1>
+                <a href="/contact" class="text-white hover:text-gray-400">Contact</a>
+                <a href="/checkout" class="text-white hover:text-gray-400">Checkout</a>
+                <a href="/shopping_cart" class="text-white hover:text-gray-400">Shopping Cart</a>
             </div>
 
             <div>
-                <a href="/">Home</a>
-                <a href="/shop">Shop</a>
-                <a href="/info">Info</a>
-                <a href="/blogs">Blogs</a>
-            </div>
-
-            <div>
-                <a href="/contact">Contact</a>
-                <a href="/checkout">Checkout</a>
-                <a href="/shopping_cart">Shopping Cart</a>
-            </div>
-
-            <div>
-                <h2>Newsletter</h2>
-                <input type="text" placeholder="Your email">
+                <h1 class="font-bold text-xl font-sans mb-3 text-white">Newsletter</h1>
+                <p class="text-white">Be the first to know about new </p>
+                <p class="text-white">arrivals, look books, sales & promos!</p>
+                <div class="flex items-center mt-2">
+                    <input type="text" placeholder=" Your email" class="text-white placeholder-white mt-2 pl-2 w-xs size-10 rounded-lg border border-gray-400 border-2 hover:border-gray-300">
+                <button class="ml-3 mt-1 pl-4 pt-1 pb-1 pr-4 bg-white rounded-lg border border-white border-2 text-black hover:bg-gray-200 hover:border-gray-200">Subscribe</button>
+                </div>
             </div>
         </div>
     </footer>
