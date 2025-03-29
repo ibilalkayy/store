@@ -4,9 +4,12 @@ use crate::controllers::pages::{
     shopping_cart::shopping_cart, signup::signup,
 };
 use actix_web::web;
+use actix_files as fs;
 
 pub fn configure_service(cfg: &mut web::ServiceConfig) {
-    cfg.service(home)
+    cfg
+    .service(fs::Files::new("/assets", "./src/assets/").show_files_listing())
+        .service(home)
         .service(shop)
         .service(info)
         .service(blogs)
