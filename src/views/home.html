@@ -15,7 +15,10 @@
     <a href="https://x.com" target="_blank"><img src="/assets/x.png" class="absolute top-220 left-82 md:left-106 w-13"></a>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 py-20 md:pl-5 pl-10">
+<div class="flex flex-col items-center py-20">
+    <h1 class="text-6xl font-bold">In Trend</h1>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 py-1 md:pl-5 pl-10">
     <div class="flex flex-col items-center">
         <img src="/assets/shirt_1.jpg" class="mb-8">
         <p class="text-lg text-center md:text-3xl font-bold mb-2">Clothing Collection 2026</p>
@@ -36,7 +39,10 @@
 </div>
 
 <!-- Items Row 1 -->
-<div class="grid grid-cols-1 md:grid-cols-4 px-10 md:pl-60 py-5">
+<div class="flex flex-col items-center py-15">
+    <h1 class="text-6xl font-bold">Items List</h1>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 px-10 md:pl-60 md:px-60 py-10">
     <div class="flex flex-col items-center">
         <img src="/assets/shirt_2.jpg" class="w-70 mb-8">
         <p class="text-lg text-center md:text-lg font-bold mb-2">Pique Biker Shirt</p>
@@ -67,7 +73,7 @@
 </div>
 
 <!-- Items Row 2 -->
-<div class="grid grid-cols-1 md:grid-cols-4 px-10 md:pl-60 py-5">
+<div class="grid grid-cols-1 md:grid-cols-4 px-10 md:pl-60 md:px-60 py-1">
     <div class="flex flex-col items-center">
         <img src="/assets/shirt_4.jpg" class="w-70 h-73 mb-8">
         <p class="text-lg text-center md:text-lg font-bold mb-2">Pique Biker Shirt</p>
@@ -96,5 +102,20 @@
         <a href="#"><p class="text-lg mt-1 py-2 px-4 mb-[-2] hover:bg-gray-200">Add to Cart</p></a>
     </div>
 </div>
+
+<div class="py-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 px-10 py-20 bg-orange-50">
+        <div class="flex flex-col items-center md:order-1">
+            <p class="text-red-700 text-2xl mb-8 mt-14 text-center">Deal of the Week</p>
+            <p class="font-bold text-6xl text-center leading-[5rem]">Multi-pocket <br>Chest Bag Black</p>
+            <button class="text-lg text-center bg-black rounded-lg mt-5 py-2 px-4 text-white mb-2 hover:bg-gray-600">Shop Now!</button>
+        </div>
+
+        <div class="flex flex-col items-center md:order-2 md:mt-2 mt-12">
+            <img src="/assets/bag_1.png" class="md:w-120">
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}
