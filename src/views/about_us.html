@@ -4,6 +4,108 @@
 
 {% block body %} 
 
-<h1>About Us Page</h1>
+<div class="flex flex-col items-center">
+    <img src="/assets/shirt_10.jpg" class="md:w-300 md:h-140 relative">
+</div>
+
+<div class="grid grid-cols-4 md:pl-100 pl-20 px-[-5] text-center md:space-x-12 mt-10">
+    <div class="flex flex-col items-center">
+        <h1 class="text-3xl font-bold mb-4">Who We Are?</h1>
+        <p>Contextual advertising programs sometimes have strict policies that need to be adhered too. Let’s take Google as an example.</p>
+    </div>
+
+    <div class="flex flex-col items-center">
+        <h1 class="text-3xl font-bold mb-4">What We Do?</h1>
+        <p>In this digital generation where information can be easily obtained within seconds, business cards still have retained their importance.</p>
+    </div>
+
+    <div class="flex flex-col items-center">
+        <h1 class="text-3xl font-bold mb-4">Why Choose Us?</h1>
+        <p>A two or three storey house is the ideal way to maximise the piece of earth on which our home sits, but for older or infirm people.</p>
+    </div>
+</div>
+
+<div class="grid md:grid-cols-2 grid-cols-1 py-25">
+    <div class="flex flex-col bg-gray-200 md:order-1">
+        <p class="text-center italic md:pt-55 text-xl mb-10 pt-20">
+            “Going out after work? Take your butane curling iron with you to the <br>
+            office, heat it up, style your hair before you leave the office and you won’t <br>
+            have to make a trip back home.”
+        </p>
+        
+        <div class="grid md:grid-cols-2 grid-cols-1 py-5">
+            <div class="flex flex-col order-1 md:ml-90 ml-50">
+                <img src="/assets/man.jpg" class="rounded-full w-20 h-20">
+            </div>
+
+            <div class="flex flex-col order-2 md:mr-10 md:ml-1 ml-40 md:mt-0 mt-5">
+                <p class="font-bold text-xl mb-3">Augusta Schultz</p>
+                <p class="italic text-2xl text-gray-400">Fashion Design</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-col items-center md:order-2">
+        <img src="/assets/camping.jpg">
+    </div>
+</div>
+
+<div class="grid grid-cols-4 mb-20 md:mr-15 md:px-70">
+    <div class="flex flex-col items-center order-1 px-10">
+        <p class="text-6xl font-bold">102</p> <span class="text-xl">Our Clients</span>
+    </div>
+
+    <div class="flex flex-col items-center order-2 px-10">
+        <p class="text-6xl font-bold">30</p> <span class="text-xl">Total Categories</span>
+    </div>
+
+    <div class="flex flex-col items-center order-3 px-10">
+        <p class="text-6xl font-bold">100</p> <span class="text-xl">In Country</span>
+    </div>
+
+    <div class="flex flex-col items-center order-4 px-10">
+        <p class="text-6xl font-bold">98%</p> <span class="text-xl">Happy Customers</span>
+    </div>
+</div>
+
+<div class="flex flex-col px-10 md:px-20 text-center">
+    <p class="text-red-700 text-xl md:mb-8 md:mt-12 mt-15 mb-5">Our Team</p>
+    <p class="text-4xl font-bold">Meet Our Team</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-4 px-10 md:pl-70 md:px-70 py-15 mb-7">
+    <div class="flex flex-col items-center">
+        <img src="/assets/man_1.jpg" class="w-70 mb-8 h-70">
+        <p class="text-xl text-center md:text-lg mb-[-15] font-bold">John Smith</p>
+        <p class="text-md mt-1 py-2 px-4 mb-[-7] text-gray-400">CEO</p>
+    </div>
+
+    <div class="flex flex-col items-center">
+        <img src="/assets/man_2.jpg" class="w-70 mb-8 h-70">
+        <p class="text-xl text-center md:text-lg mb-[-15] font-bold">Christine Wise</p>
+        <p class="text-md py-2 px-4 mb-[-7] text-gray-400">CTO</p>
+    </div>
+
+    <div class="flex flex-col items-center">
+        <img src="/assets/man_3.jpg" class="w-70 h-70 mb-8">
+        <p class="text-xl text-center md:text-lg mb-[-15] font-bold">Sean Robbins</p>
+        <p class="text-md mt-1 py-2 px-4 mb-[-7] text-gray-400">Investor</p>
+    </div>
+
+    <div class="flex flex-col items-center">
+        <img src="/assets/man_4.jpg" class="w-70 mb-8 h-70">
+        <p class="text-xl text-center md:text-lg mb-[-15] font-bold">Lucy Myers</p>
+        <p class="text-md mt-1 py-2 px-4 mb-[-7] text-gray-400">CMO</p>
+    </div>
+</div>
+
+<div class="flex flex-col md:mb-0 mb-12 md:px-20  text-center">
+    <p class="text-red-700 text-xl md:mb-8 md:mt-12 mb-5">Partner</p>
+    <p class="text-4xl font-bold md:mb-8">Happy Clients</p>
+</div>
+
+<div class="flex flex-col items-center">
+    <img src="/assets/brands.png" class="md:w-280 md:h-70 md:mb-12 mb-12">
+</div>
 
 {% endblock %}

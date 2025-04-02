@@ -29,7 +29,14 @@
             <ul class="flex flex-wrap gap-8 text-sm md:text-base">
                 <li><a class="hover:text-gray-500" href="/">Home</a></li>
                 <li><a class="hover:text-gray-500" href="/shop">Shop</a></li>
-                <li><a class="hover:text-gray-500" href="/info">Info</a></li>
+                <li class="relative group">
+                    <a class="hover:text-gray-500 cursor-pointer">Info</a>
+                    <ul class="absolute left-0 hidden group-hover:block bg-white shadow-lg rounded-md w-40 mt-2 z-50">
+                        <li><a class="block px-4 py-2 hover:bg-gray-100" href="/about_us">About Us</a></li>
+                        <li><a class="block px-4 py-2 hover:bg-gray-100" href="/shopping_cart">Shopping Cart</a></li>
+                        <li><a class="block px-4 py-2 hover:bg-gray-100" href="/checkout">Checkout</a></li>
+                    </ul>
+                </li>
                 <li><a class="hover:text-gray-500" href="/blogs">Blogs</a></li>
                 <li><a class="hover:text-gray-500" href="/contact">Contact</a></li>
             </ul>
