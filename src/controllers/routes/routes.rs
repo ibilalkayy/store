@@ -1,7 +1,7 @@
 use crate::controllers::pages::{
-    about_us::about_us, blogs::blogs, checkout::checkout, contact::contact, faqs::faqs, home::home,
+    about_us::about_us, blogs::blogs, checkout::checkout, contact::contact, home::home,
     info::info, login::login, page_not_found::page_not_found, shop::shop,
-    shopping_cart::shopping_cart, signup::signup,
+    shopping_cart::shopping_cart, signup::signup, forgot_password::forgot_password,
 };
 use actix_web::web;
 use actix_files as fs;
@@ -19,6 +19,6 @@ pub fn configure_service(cfg: &mut web::ServiceConfig) {
         .service(checkout)
         .service(signup)
         .service(login)
-        .service(faqs)
+        .service(forgot_password)
         .default_service(web::route().to(page_not_found));
 }

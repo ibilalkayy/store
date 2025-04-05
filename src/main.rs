@@ -1,8 +1,13 @@
+//! # Store
+//! 
+//! An eCommerce application that lets you buy seasonal items
+
+/// Control the logic of all the services
 mod controllers;
 
-use crate::controllers::routes::routes::configure_service;
-use actix_web::{App, HttpServer, web};
-use tera::Tera;
+pub use crate::controllers::routes::routes::configure_service;
+pub use actix_web::{App, HttpServer, web};
+pub use tera::Tera;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {

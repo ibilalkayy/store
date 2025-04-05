@@ -4,6 +4,74 @@
 
 {% block body %} 
 
-<h1>Shop Page</h1>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="order-1 md:col-span-1">
+            <div class="sticky top-8">
+                <p class="text-2xl font-bold mb-4">Categories</p>
+                <ul class="space-y-2 mb-6">
+                    <li class="hover:text-gray-600 cursor-pointer">Bags</li>
+                    <li class="hover:text-gray-600 cursor-pointer">Clothing</li>
+                    <li class="hover:text-gray-600 cursor-pointer">Shoes</li>
+                    <li class="hover:text-gray-600 cursor-pointer">Accessories</li>
+                </ul>
+
+                <p class="text-2xl font-bold mb-4">Filter Price</p>
+                <ul class="space-y-2">
+                    <li class="hover:text-gray-600 cursor-pointer">$0.00 - $50.00</li>
+                    <li class="hover:text-gray-600 cursor-pointer">$50.00 - $100.00</li>
+                    <li class="hover:text-gray-600 cursor-pointer">$100.00 - $150.00</li>
+                    <li class="hover:text-gray-600 cursor-pointer">$150.00 - $200.00</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="order-2 md:col-span-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="flex flex-col items-center p-4">
+                    <img src="/assets/shirt_2.jpg" class="w-full max-w-[200px] h-auto mb-4 object-cover">
+                    <p class="text-lg text-center font-bold mb-2">Pique Biker Shirt</p>
+                    <p class="text-lg font-bold mb-2">$67.24</p>
+                    <a href="#" class="text-lg py-2 px-4 hover:bg-gray-200 rounded transition-colors">Add to Cart</a>
+                </div>
+
+                <div class="flex flex-col items-center p-4">
+                    <img src="/assets/shoes_2.jpg" class="w-full max-w-[200px] h-auto mb-4 object-cover">
+                    <p class="text-lg text-center font-bold mb-2">Pique Biker Shoe</p>
+                    <p class="text-lg font-bold mb-2">$67.24</p>
+                    <a href="#" class="text-lg py-2 px-4 hover:bg-gray-200 rounded transition-colors">Add to Cart</a>
+                </div>
+
+                <div class="flex flex-col items-center p-4">
+                    <img src="/assets/shirt_3.jpg" class="w-full max-w-[200px] h-auto mb-4 object-cover">
+                    <p class="text-lg text-center font-bold mb-2">Pique Biker Shirt</p>
+                    <p class="text-lg font-bold mb-2">$67.24</p>
+                    <a href="#" class="text-lg py-2 px-4 hover:bg-gray-200 rounded transition-colors">Add to Cart</a>
+                </div>
+
+                <div class="flex flex-col items-center p-4">
+                    <img src="/assets/shoes_3.jpg" class="w-full max-w-[200px] h-auto mb-4 object-cover">
+                    <p class="text-lg text-center font-bold mb-2">Pique Biker Shoe</p>
+                    <p class="text-lg font-bold mb-2">$67.24</p>
+                    <a href="#" class="text-lg py-2 px-4 hover:bg-gray-200 rounded transition-colors">Add to Cart</a>
+                </div>
+
+                <div class="flex flex-col items-center p-4">
+                    <img src="/assets/shirt_2.jpg" class="w-full max-w-[200px] h-auto mb-4 object-cover">
+                    <p class="text-lg text-center font-bold mb-2">Pique Biker Shirt</p>
+                    <p class="text-lg font-bold mb-2">$67.24</p>
+                    <a href="#" class="text-lg py-2 px-4 hover:bg-gray-200 rounded transition-colors">Add to Cart</a>
+                </div>
+
+                <div class="flex flex-col items-center p-4">
+                    <img src="/assets/shoes_2.jpg" class="w-full max-w-[200px] h-auto mb-4 object-cover">
+                    <p class="text-lg text-center font-bold mb-2">Pique Biker Shoe</p>
+                    <p class="text-lg font-bold mb-2">$67.24</p>
+                    <a href="#" class="text-lg py-2 px-4 hover:bg-gray-200 rounded transition-colors">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
