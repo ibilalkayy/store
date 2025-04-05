@@ -4,6 +4,116 @@
 
 {% block body %} 
 
-<h1>Checkout Page</h1>
+<div class="grid md:grid-cols-2 grid-cols-1">
+    <div class="flex flex-col items-center space-y-6 mb-10">
+        <h3 class="mt-10 font-bold text-2xl">Billing Details</h3>
+        <hr>
+
+        <div class="flex md:flex-row flex-col space-x-8">
+            <div class="flex flex-col md:space-y-4 space-y-2 pb-5">
+                <p>First Name</p>
+                <input type="text" class="pl-2 text-black border border-1 border-gray-300 md:h-11 h-9 md:w-100">
+            </div>
+    
+            <div class="flex flex-col md:space-y-4 space-y-2">
+                <p>Last Name</p>
+                <input type="text" class="pl-2 text-black border border-1 border-gray-300 md:h-11 h-9 md:w-100">
+            </div>
+        </div>
+
+        <div class="flex flex-col md:space-x-4 space-x-2 space-y-4 pb-5">
+            <p class="md:ml-4">Address</p>
+            <input type="text" placeholder="Street Address" class="pl-2 text-black border border-1 border-gray-300 md:h-11 h-9 md:w-210 md:ml-4 md:mr-2 mr-8">
+            <input type="text" placeholder="Apartment, suite unit ect (optional)" class="pl-2 text-black border border-1 border-gray-300 md:h-11 h-9 md:w-210 md:ml-4 md:mr-2 mr-8">
+
+            <p class="md:ml-4">Town/City</p>
+            <input type="text" class="pl-2 text-black border border-1 border-gray-300 md:h-11 h-9 md:w-210 md:ml-4 md:mr-2 mr-8">
+            
+            <p class="md:ml-4">Country</p>
+            <input type="text" class="pl-2 text-black border border-1 border-gray-300 md:h-11 h-9 md:w-210 md:ml-4 md:mr-2 mr-8">
+
+            <p class="md:ml-4">Postcode/ZIP</p>
+            <input type="text" class="pl-2 text-black border border-1 border-gray-300 md:h-11 h-9 md:w-210 md:ml-4 md:mr-2 mr-8">
+        </div>
+
+        <div class="flex md:flex-row flex-col space-x-8">
+            <div class="flex flex-col md:space-y-4 space-y-2 pb-5">
+                <p>Phone</p>
+                <input type="text" class="pl-2 text-black border border-1 border-gray-300 md:h-11 h-9 md:w-100">
+            </div>
+    
+            <div class="flex flex-col md:space-y-4 space-y-2">
+                <p>Email</p>
+                <input type="text" class="pl-2 text-black border border-1 border-gray-300 md:h-11 h-9 md:w-100">
+            </div>
+        </div>
+
+        <div class="md:ml-6 space-x-2 ml-34">
+            <input type="checkbox"> Create an account?
+            <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page</p>
+        </div>
+
+        <div class="flex flex-col md:space-x-4 space-x-2 space-y-4 pb-5">
+            <p class="md:ml-4">Account Password</p>
+            <input type="text" class="pl-2 text-black border border-1 border-gray-300 md:h-11 h-9 md:w-210 md:ml-4 md:mr-2 mr-8">
+
+            <p class="md:ml-4">Order Notes</p>
+            <input type="text" class="pl-2 text-black border border-1 border-gray-300 md:h-11 h-9 md:w-210 md:ml-4 md:mr-2 mr-8">
+        </div>
+
+        <div class="md:mr-112">
+            <input type="checkbox"> Note about your order, e.g, special noe for delivery
+        </div>
+    </div>
+
+    <div class="flex flex-col">
+        <div class="md:mt-10 bg-gray-100 w-100 h-130 md:mt-40">
+            <p class="text-3xl font-bold mb-5 mt-5 ml-5">Your Order</p>
+            <div class="flex flex-row">
+                <p class="text-xl font-bold ml-6">01. Vanilla salted carame:</p>
+                <p class="pl-10 text-lg">$300.0</p>
+            </div>
+
+            <div class="flex flex-row mt-2">
+                <p class="text-xl font-bold ml-6">02. German chocolate: </p>
+                <p class="pl-14 text-lg md:ml-3">$159.0</p>
+            </div>
+
+            <br>
+
+            <div class="flex flex-row">
+                <p class="text-xl font-bold ml-6">SubTotal</p>
+                <p class="pl-10 text-lg">$300.0</p>
+            </div>
+
+            <div class="flex flex-row mt-2">
+                <p class="text-xl font-bold ml-6">Total: </p>
+                <p class="pl-14 text-lg md:ml-3">$159.0</p>
+            </div>
+
+            <br>
+
+            <div class="flex flex-row mt-2 pl-6 pr-6">
+                <p> Lorem ipsum dolor sit amet, consectetur adip elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+
+            <br>
+
+            <div class="flex flex-col gap-2 ml-6">
+                <label class="flex items-center gap-2">
+                  <input type="checkbox" />
+                  Check Payment
+                </label>
+                <label class="flex items-center gap-2">
+                  <input type="checkbox" />
+                  Paypal
+                </label>
+            </div>              
+
+            <button class="mt-7 bg-black text-xl text-white hover:bg-gray-400 p-2 px-6 ml-20">Proceed to Checkout</button>
+        </div>
+        
+    </div>
+</div>
 
 {% endblock %}
