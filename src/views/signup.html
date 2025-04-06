@@ -4,7 +4,7 @@
 
 {% block body %} 
 
-<div class="flex flex-col items-center space-y-4 md:space-y-6 px-4 max-w-md mx-auto mt-10">
+<form method="http://localhost:8080/signup" method="get" class="flex flex-col items-center space-y-4 md:space-y-6 px-4 max-w-md mx-auto mt-10">
     <h1 class="text-3xl md:text-4xl font-bold text-center">Signup</h1>
     <input 
         type="text" 
@@ -16,9 +16,14 @@
         placeholder="Email" 
         class="w-full h-10 md:h-12 border-2 border-gray-200 pl-3 text-black rounded-md focus:outline-none focus:border-gray-400"
     >
+    <input 
+        type="password" 
+        placeholder="Password" 
+        class="w-full h-10 md:h-12 border-2 border-gray-200 pl-3 text-black rounded-md focus:outline-none focus:border-gray-400"
+    >
     <button class="text-lg bg-black mt-2 py-2 px-8 text-white rounded-md hover:bg-gray-600 transition-colors w-full md:w-auto">Signup</button>
     <button class="text-lg bg-black mt-2 py-2 px-8 text-white rounded-md hover:bg-gray-600 transition-colors w-full md:w-auto">Login</button>
     <button class="text-lg bg-black mt-2 py-2 px-8 text-white rounded-md hover:bg-gray-600 transition-colors w-full md:w-auto">Forgot Password</button>
-</div>
+</form>
 
 {% endblock %}

@@ -1,5 +1,5 @@
 //! # Shop
-//! 
+//!
 //! Shop page of the store application
 
 use actix_web::{HttpResponse, Responder, get, web};

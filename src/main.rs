@@ -1,5 +1,5 @@
 //! # Store
-//! 
+//!
 //! An eCommerce application that lets you buy seasonal items
 
 /// Control the logic of all the services

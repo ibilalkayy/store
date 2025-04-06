@@ -13,9 +13,6 @@ pub mod contact;
 /// Logic of the Home page
 pub mod home;
 
-/// Logic of the Info page
-pub mod info;
-
 /// Logic of the Login page
 pub mod login;
 

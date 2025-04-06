@@ -1,5 +1,5 @@
 //! # Shopping Cart
-//! 
+//!
 //! Shopping Cart page of the store application
 
 use actix_web::{HttpResponse, Responder, get, web};
