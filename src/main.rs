@@ -4,14 +4,17 @@
 
 /// Control the logic of all the services
 mod controllers;
+mod models;
 
 pub use crate::controllers::routes::routes::configure_service;
 pub use actix_web::{App, HttpServer, web};
+pub use models::db::conn::connect;
 pub use tera::Tera;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let tera = Tera::new("src/views/*").unwrap();
+    let _ = connect().await;
     println!("Starting the server at port: 8080");
     HttpServer::new(move || {
         App::new()
