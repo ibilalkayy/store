@@ -1,6 +1,5 @@
 CREATE TABLE IF NOT EXISTS addresses (
     id SERIAL PRIMARY KEY,
-    user_id INT NOT NULL,
     first_names VARCHAR NOT NULL,
     last_names VARCHAR NOT NULL,
     addresses VARCHAR NOT NULL,

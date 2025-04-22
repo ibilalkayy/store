@@ -1,6 +1,6 @@
-CREATE TABLE IF NOT EXISTS contacts (
+CREATE TABLE IF NOT EXISTS contact (
     id SERIAL PRIMARY KEY,
-    names INT NOT NULL,
+    names VARCHAR NOT NULL,
     emails VARCHAR NOT NULL UNIQUE,
     messages VARCHAR NOT NULL
 );

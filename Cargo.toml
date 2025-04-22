@@ -1,11 +1,14 @@
 [package]
 name = "store"
-version = "0.1.17"
+version = "0.1.18"
 edition = "2024"
 
 [dependencies]
 actix-files = "0.6.6"
 actix-web = "4.10.2"
+anyhow = "1.0.98"
 chrono = "0.4.40"
-sqlx = {version = "0.8.3", features = ["postgres", "runtime-tokio-rustls", "runtime-tokio", "macros", "migrate"]} 
+dotenv = "0.15.0"
+serde = { version = "1.0.219", features = ["derive"] }
+sqlx = { version = "0.8.5", features = ["postgres", "runtime-tokio-rustls", "runtime-tokio", "macros", "migrate"] }
 tera = "1.20.0"
