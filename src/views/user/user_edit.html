@@ -1,0 +1,41 @@
+<tr id="user-{{ user.id }}">
+    <td colspan="5">
+        <form 
+            action="/update/{{ user.id }}" 
+            method="post"
+            hx-post="/update/{{ user.id }}"
+            hx-target="#user-{{ user.id }}"
+            hx-swap="outerHTML"
+            class="flex flex-col gap-4 p-4 bg-gray-50 rounded"
+        >
+            <!-- Name -->
+            <div class="flex flex-col">
+                <label for="name-{{ user.id }}" class="font-semibold mb-1">Name</label>
+                <input id="name-{{ user.id }}" type="text" name="name" value="{{ user.name }}" required class="p-2 border rounded">
+            </div>
+
+            <!-- Email -->
+            <div class="flex flex-col">
+                <label for="email-{{ user.id }}" class="font-semibold mb-1">Email</label>
+                <input id="email-{{ user.id }}" type="email" name="email" value="{{ user.email }}" required class="p-2 border rounded">
+            </div>
+
+            <!-- Password -->
+            <div class="flex flex-col">
+                <label for="password-{{ user.id }}" class="font-semibold mb-1">Password</label>
+                <input id="password-{{ user.id }}" type="text" name="password" value="{{ user.password }}" required class="p-2 border rounded">
+            </div>
+
+            <!-- Role -->
+            <div class="flex flex-col">
+                <label for="role-{{ user.id }}" class="font-semibold mb-1">Role</label>
+                <input id="role-{{ user.id }}" type="text" name="role" value="{{ user.role }}" required class="p-2 border rounded">
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="bg-black text-white px-4 py-2 rounded hover:bg-gray-700 transition">
+                Update
+            </button>
+        </form>
+    </td>
+</tr>

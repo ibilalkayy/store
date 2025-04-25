@@ -1,215 +1,205 @@
 use actix_web::{
-    Error, HttpResponse, Responder, delete, error::ErrorNotFound, get, post, put, web,
+    web::Form, web::Data, web::Path, HttpResponse, http::header, Responder, get, post,
 };
-use serde::Serialize;
 use sqlx::PgPool;
+use tera::{Tera, Context};
 
-use crate::models::entities::user::User;
+use crate::models::entities::user::{NewUser, User};
 
-#[derive(Debug, Serialize, sqlx::FromRow)]
-pub struct UserData {
-    pub id: i32,
-
-    #[sqlx(rename = "names")]
-    pub name: String,
-
-    #[sqlx(rename = "emails")]
-    pub email: String,
-
-    #[sqlx(rename = "password_hashes")]
-    pub password_hash: String,
-    
-    #[sqlx(rename = "roles")]
-    pub role: String
-}
-
-#[derive(Serialize)]
-pub struct UserResponse {
-    pub message: String,
-    pub user: Option<UserData>
-}
-
-#[post("/users")]
+#[post("/")]
 pub async fn create_user(
-    user_data: web::Json<User>,
-    pool: web::Data<PgPool>,
-) -> Result<impl Responder, Error> {
-    let user = sqlx::query_as::<_, UserData>(
-        r#"
-        INSERT INTO users (names, emails, password_hashes, roles)
-        VALUES ($1, $2, $3, $4)
-        RETURNING id, names, emails, password_hashes, roles
-        "#,
-    )
-    .bind(&user_data.name)
-    .bind(&user_data.email)
-    .bind(&user_data.password_hash)
-    .bind(&user_data.role)
-    .fetch_one(pool.get_ref())
-    .await
-    .map_err(|e| {
-        eprintln!("Database error: {:?}", e);
-        actix_web::error::ErrorInternalServerError(e)
-    })?;
+    form: Form<NewUser>,
+    pool: Data<PgPool>,
+) -> impl Responder {
+    let user_data = form.into_inner();
+    sqlx::query ("INSERT INTO users (names, emails, passwords, roles) VALUES ($1, $2, $3, $4)")
+        .bind(&user_data.name)
+        .bind(&user_data.email)
+        .bind(&user_data.password)
+        .bind(&user_data.role)
+        .execute(pool.get_ref())
+        .await
+        .unwrap();
 
-    let response = UserResponse {
-        message: "Created successfully".to_string(),
-        user: Some(user),
-    };
-
-    Ok(HttpResponse::Created().json(response))
+    HttpResponse::SeeOther()
+        .insert_header((header::LOCATION, "/"))
+        .finish()
 }
 
 #[get("/users/{id}")]
 pub async fn get_user(
-    user_id: web::Path<i32>,
-    pool: web::Data<PgPool>,
-) -> Result<impl Responder, Error> {
+    user_id: Path<i32>,
+    tmpl: Data<Tera>,
+    pool: Data<PgPool>,
+) -> impl Responder {
     let user_id = user_id.into_inner();
-
-    let user = sqlx::query_as::<_, UserData>(
-        "SELECT id, names, emails, password_hashes, roles FROM users WHERE id = $1",
-    )
-    .bind(user_id)
-    .fetch_optional(pool.get_ref())
-    .await
-    .map_err(|e| {
-        eprintln!("Database error: {:?}", e);
-        actix_web::error::ErrorInternalServerError(e)
-    })?;
-
-    match user {
-        Some(user_data) => Ok(HttpResponse::Ok().json(user_data)),
-        None => Err(ErrorNotFound("User not found")),
-    }
-}
-
-#[put("/users/{id}")]
-pub async fn update_user(
-    user_data: web::Json<User>,
-    user_id: web::Path<i32>,
-    pool: web::Data<PgPool>,
-) -> Result<impl Responder, Error> {
-    let user_id = user_id.into_inner();
-    let user = sqlx::query_as::<_, User>(
-        r#"
-        UPDATE users 
-        SET names = $1, emails = $2, password_hashes = $3, roles = $4
-        WHERE id = $5
-        RETURNING names, emails, password_hashes, roles
-        "#,
-    )
-    .bind(&user_data.name)
-    .bind(&user_data.email)
-    .bind(&user_data.password_hash)
-    .bind(&user_data.role)
-    .bind(user_id)
-    .fetch_optional(pool.get_ref())
-    .await
-    .map_err(|e| {
-        eprintln!("Database error: {:?}", e);
-        actix_web::error::ErrorInternalServerError(e)
-    })?;
+    let user = sqlx::query_as::<_, User>("SELECT id, names, emails, passwords, roles FROM users WHERE id = $1")
+        .bind(user_id)
+        .fetch_optional(pool.get_ref())
+        .await
+        .unwrap();
 
     match user {
         Some(user_data) => {
-            let response = UserResponse {
-                message: "Updated successfully".to_string(),
-                user: Some(UserData {
-                    id: user_id,
-                    name: user_data.name,
-                    email: user_data.email,
-                    password_hash: user_data.password_hash,
-                    role: user_data.role,
-                }),
-            };
-            Ok(HttpResponse::Ok().json(response))
+            let mut context = Context::new();
+            context.insert("user", &user_data);
+            let rendered = tmpl.render("user/user_info.html", &context).unwrap();
+            HttpResponse::Ok().body(rendered)
         }
-        None => Err(ErrorNotFound("User not found")),
+        None => HttpResponse::SeeOther()
+            .insert_header((header::LOCATION, "/page_not_found"))
+            .finish()
     }
 }
 
-#[delete("/users/{id}")]
-pub async fn delete_user(
-    user_id: web::Path<i32>,
-    pool: web::Data<PgPool>,
-) -> Result<impl Responder, Error> {
-    let user_id = user_id.into_inner();
+#[post("/update/{id}")]
+pub async fn update_user(
+    user_id: Path<i32>,
+    form: Form<NewUser>,
+    pool: Data<PgPool>,
+    tmpl: Data<Tera>
+) -> impl Responder {
+    sqlx::query("UPDATE users SET names = $1, emails = $2, passwords = $3, roles = $4 WHERE id = $5")
+        .bind(&form.name)
+        .bind(&form.email)
+        .bind(&form.password)
+        .bind(&form.role)
+        .bind(*user_id)
+        .execute(pool.get_ref())
+        .await
+        .unwrap();
 
-    sqlx::query(
-        r#"
-        DELETE FROM blog_users WHERE user_id = $1
-        "#
-    )
-    .bind(user_id)
-    .fetch_optional(pool.get_ref())
-    .await
-    .map_err(|e| {
-        eprintln!("Database error: {:?}", e);
-        actix_web::error::ErrorInternalServerError(e)
-    })?;
-
-    sqlx::query(
-        r#"
-        DELETE FROM payment_users WHERE user_id = $1
-        "#
-    )
-    .bind(user_id)
-    .fetch_optional(pool.get_ref())
-    .await
-    .map_err(|e| {
-        eprintln!("Database error: {:?}", e);
-        actix_web::error::ErrorInternalServerError(e)
-    })?;
-
-    sqlx::query(
-        r#"
-        DELETE FROM address_users WHERE user_id = $1
-        "#
-    )
-    .bind(user_id)
-    .fetch_optional(pool.get_ref())
-    .await
-    .map_err(|e| {
-        eprintln!("Database error: {:?}", e);
-        actix_web::error::ErrorInternalServerError(e)
-    })?;
-
-    sqlx::query(
-        r#"
-        DELETE FROM order_users WHERE user_id = $1
-        "#
-    )
-    .bind(user_id)
-    .fetch_optional(pool.get_ref())
-    .await
-    .map_err(|e| {
-        eprintln!("Database error: {:?}", e);
-        actix_web::error::ErrorInternalServerError(e)
-    })?;
-    
     let user = sqlx::query_as::<_, User>(
-        r#"
-        DELETE FROM users WHERE id = $1
-        RETURNING names, emails, password_hashes, roles
-        "#,
+        "SELECT id, names, emails, passwords, roles FROM users WHERE id = $1"
     )
-    .bind(user_id)
-    .fetch_optional(pool.get_ref())
+    .bind(*user_id)
+    .fetch_one(pool.get_ref())
     .await
-    .map_err(|e| {
-        eprintln!("Database error: {:?}", e);
-        actix_web::error::ErrorInternalServerError(e)
-    })?;
+    .unwrap();
 
-    match user {
-        Some(_) => {
-            let response = UserResponse {
-                message: "Deleted successfully".to_string(),
-                user: None,
-            };
-            Ok(HttpResponse::Ok().json(response))
-        }
-        None => Err(ErrorNotFound("User not found")),
-    }
+    let mut ctx = Context::new();
+    ctx.insert("user", &user);
+
+    let rendered = tmpl.render("user/user_row.html", &ctx).unwrap();
+    HttpResponse::Ok().body(rendered)
 }
+
+#[get("/edit_users/{id}")]
+pub async fn edit_user(
+    user_id: Path<i32>,
+    tmpl: Data<Tera>,
+    pool: Data<PgPool>
+) -> impl Responder {
+    let user = sqlx::query_as::<_, User>(
+        "SELECT id, names, emails, passwords, roles FROM users WHERE id = $1"
+    )
+    .bind(*user_id)
+    .fetch_one(pool.get_ref())
+    .await
+    .unwrap();
+
+    let mut ctx = Context::new();
+    ctx.insert("user", &user);
+
+    let rendered = tmpl.render("user/user_edit.html", &ctx).unwrap();
+    HttpResponse::Ok().body(rendered)
+}
+
+#[post("/delete_users/{id}")]
+pub async fn delete_user(
+    user_id: Path<i32>,
+    pool: Data<PgPool>,
+) -> impl Responder {
+    sqlx::query("DELETE FROM users WHERE id = $1")
+        .bind(user_id.into_inner())
+        .execute(pool.get_ref())
+        .await
+        .unwrap();
+    
+    HttpResponse::Ok().body("")
+}
+
+// #[delete("/users/{id}")]
+// pub async fn delete_user(
+//     user_id: web::Path<i32>,
+//     pool: web::Data<PgPool>,
+// ) -> Result<impl Responder, Error> {
+//     let user_id = user_id.into_inner();
+
+//     sqlx::query(
+//         r#"
+//         DELETE FROM blog_users WHERE user_id = $1
+//         "#
+//     )
+//     .bind(user_id)
+//     .fetch_optional(pool.get_ref())
+//     .await
+//     .map_err(|e| {
+//         eprintln!("Database error: {:?}", e);
+//         actix_web::error::ErrorInternalServerError(e)
+//     })?;
+
+//     sqlx::query(
+//         r#"
+//         DELETE FROM payment_users WHERE user_id = $1
+//         "#
+//     )
+//     .bind(user_id)
+//     .fetch_optional(pool.get_ref())
+//     .await
+//     .map_err(|e| {
+//         eprintln!("Database error: {:?}", e);
+//         actix_web::error::ErrorInternalServerError(e)
+//     })?;
+
+//     sqlx::query(
+//         r#"
+//         DELETE FROM address_users WHERE user_id = $1
+//         "#
+//     )
+//     .bind(user_id)
+//     .fetch_optional(pool.get_ref())
+//     .await
+//     .map_err(|e| {
+//         eprintln!("Database error: {:?}", e);
+//         actix_web::error::ErrorInternalServerError(e)
+//     })?;
+
+//     sqlx::query(
+//         r#"
+//         DELETE FROM order_users WHERE user_id = $1
+//         "#
+//     )
+//     .bind(user_id)
+//     .fetch_optional(pool.get_ref())
+//     .await
+//     .map_err(|e| {
+//         eprintln!("Database error: {:?}", e);
+//         actix_web::error::ErrorInternalServerError(e)
+//     })?;
+    
+//     let user = sqlx::query_as::<_, User>(
+//         r#"
+//         DELETE FROM users WHERE id = $1
+//         RETURNING names, emails, password_hashes, roles
+//         "#,
+//     )
+//     .bind(user_id)
+//     .fetch_optional(pool.get_ref())
+//     .await
+//     .map_err(|e| {
+//         eprintln!("Database error: {:?}", e);
+//         actix_web::error::ErrorInternalServerError(e)
+//     })?;
+
+//     match user {
+//         Some(_) => {
+//             let response = UserResponse {
+//                 message: "Deleted successfully".to_string(),
+//                 user: None,
+//             };
+//             Ok(HttpResponse::Ok().json(response))
+//         }
+//         None => Err(ErrorNotFound("User not found")),
+//     }
+// }

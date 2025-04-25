@@ -1,6 +1,6 @@
 [package]
 name = "store"
-version = "0.1.18"
+version = "0.1.19"
 edition = "2024"
 
 [dependencies]
@@ -9,6 +9,8 @@ actix-web = "4.10.2"
 anyhow = "1.0.98"
 chrono = "0.4.40"
 dotenv = "0.15.0"
+htmx = "0.1.0"
 serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
 sqlx = { version = "0.8.5", features = ["postgres", "runtime-tokio-rustls", "runtime-tokio", "macros", "migrate"] }
 tera = "1.20.0"

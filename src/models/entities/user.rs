@@ -1,20 +1,34 @@
 use serde::{Deserialize, Serialize};
+use sqlx::FromRow;
 
-#[derive(Debug, Serialize, Deserialize, sqlx::FromRow)]
-pub struct User {
+#[derive(Debug, Deserialize, FromRow)]
+pub struct NewUser {
     #[sqlx(rename = "names")]
-    #[serde(rename = "name")]
     pub name: String,
 
     #[sqlx(rename = "emails")]
-    #[serde(rename = "email")]
     pub email: String,
 
-    #[sqlx(rename = "password_hashes")]
-    #[serde(rename = "password_hash")]
-    pub password_hash: String,
+    #[sqlx(rename = "passwords")]
+    pub password: String,
 
     #[sqlx(rename = "roles")]
-    #[serde(rename = "role")]    
     pub role: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, sqlx::FromRow)]
+pub struct User {
+    pub id: i32,
+
+    #[sqlx(rename = "names")]
+    pub name: String,
+
+    #[sqlx(rename = "emails")]
+    pub email: String,
+
+    #[sqlx(rename = "passwords")]
+    pub password: String,
+
+    #[sqlx(rename = "roles")]
+    pub role: String
 }
