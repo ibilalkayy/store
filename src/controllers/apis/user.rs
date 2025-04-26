@@ -26,7 +26,7 @@ pub async fn create_user(
         .finish()
 }
 
-#[get("/users/{id}")]
+#[get("/user/{id}")]
 pub async fn get_user(
     user_id: Path<i32>,
     tmpl: Data<Tera>,
@@ -84,7 +84,7 @@ pub async fn update_user(
     HttpResponse::Ok().body(rendered)
 }
 
-#[get("/edit_users/{id}")]
+#[get("/edit_user/{id}")]
 pub async fn edit_user(
     user_id: Path<i32>,
     tmpl: Data<Tera>,
@@ -105,7 +105,7 @@ pub async fn edit_user(
     HttpResponse::Ok().body(rendered)
 }
 
-#[post("/delete_users/{id}")]
+#[post("/delete_user/{id}")]
 pub async fn delete_user(
     user_id: Path<i32>,
     pool: Data<PgPool>,

@@ -30,3 +30,5 @@ pub mod signup;
 
 /// Logic of the forgot password page
 pub mod forgot_password;
+
+pub mod user;

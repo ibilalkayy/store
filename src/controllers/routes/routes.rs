@@ -35,6 +35,7 @@ use crate::controllers::pages::{
     checkout::checkout,
     signup::signup,
     login::login,
+    user::show_user,
     forgot_password::forgot_password,
     page_not_found::page_not_found
 };
@@ -55,6 +56,7 @@ pub fn page_services(cfg: &mut web::ServiceConfig) {
     cfg.service(fs::Files::new("/assets", "./src/assets/").show_files_listing())
     .service(home)
         .service(shop)
+        .service(show_user)
         .service(blogs)
         .service(contact)
         .service(about_us)

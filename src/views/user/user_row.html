@@ -5,7 +5,7 @@
             <label class="font-semibold mb-1">Name</label>
             <div class="flex justify-between items-center">
                 <span>{{ user.name }}</span>
-                <button class="ml-38" hx-get="/edit_users/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
+                <button class="ml-38" hx-get="/edit_user/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
             </div>
         </div>
 
@@ -14,7 +14,7 @@
             <label class="font-semibold mb-1">Email</label>
             <div class="flex justify-between items-center">
                 <span>{{ user.email }}</span>
-                <button class="ml-38" hx-get="/edit_users/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
+                <button class="ml-38" hx-get="/edit_user/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
             </div>
         </div>
 
@@ -23,7 +23,7 @@
             <label class="font-semibold mb-1">Password</label>
             <div class="flex justify-between items-center">
                 <span>{{ user.password }}</span>
-                <button class="ml-38" hx-get="/edit_users/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
+                <button class="ml-38" hx-get="/edit_user/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
             </div>
         </div>
 
@@ -32,15 +32,15 @@
             <label class="font-semibold mb-1">Role</label>
             <div class="flex justify-between items-center">
                 <span>{{ user.role }}</span>
-                <button class="ml-38" hx-get="/edit_users/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
+                <button class="ml-38" hx-get="/edit_user/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
             </div>
         </div>
 
         <!-- Delete Button -->
         <form 
-            action="/delete_users/{{ user.id }}" 
+            action="/delete_user/{{ user.id }}" 
             method="post" 
-            hx-post="/delete_users/{{ user.id }}" 
+            hx-post="/delete_user/{{ user.id }}" 
             hx-target="#user-{{ user.id }}" 
             hx-swap="outerHTML"
         >

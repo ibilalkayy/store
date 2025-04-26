@@ -1,18 +1,11 @@
-{% extends "base.html" %}
-
-{% block title %} User {% endblock %}
-
-{% block body %} 
 <div class="flex flex-col items-center">
-    <h1 class="text-2xl font-bold text-center my-6">User Details</h1>
-
     <div id="user-{{ user.id }}" class="bg-white p-6 rounded shadow-md w-full max-w-md space-y-4">
         <!-- Name -->
         <div class="flex flex-col">
             <label class="font-semibold mb-1">Name</label>
             <div class="flex justify-between items-center">
                 <span>{{ user.name }}</span>
-                <button hx-get="/edit_users/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
+                <button class="ml-38" hx-get="/edit_user/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
             </div>
         </div>
 
@@ -21,7 +14,7 @@
             <label class="font-semibold mb-1">Email</label>
             <div class="flex justify-between items-center">
                 <span>{{ user.email }}</span>
-                <button hx-get="/edit_users/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
+                <button class="ml-38" hx-get="/edit_user/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
             </div>
         </div>
 
@@ -30,7 +23,7 @@
             <label class="font-semibold mb-1">Password</label>
             <div class="flex justify-between items-center">
                 <span>{{ user.password }}</span>
-                <button hx-get="/edit_users/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
+                <button class="ml-38" hx-get="/edit_user/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
             </div>
         </div>
 
@@ -39,15 +32,15 @@
             <label class="font-semibold mb-1">Role</label>
             <div class="flex justify-between items-center">
                 <span>{{ user.role }}</span>
-                <button hx-get="/edit_users/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
+                <button class="ml-38" hx-get="/edit_user/{{ user.id }}" hx-target="#user-{{ user.id }}" hx-swap="outerHTML">✏️</button>
             </div>
         </div>
 
         <!-- Delete Button -->
         <form 
-            action="/delete_users/{{ user.id }}" 
+            action="/delete_user/{{ user.id }}" 
             method="post" 
-            hx-post="/delete_users/{{ user.id }}" 
+            hx-post="/delete_user/{{ user.id }}" 
             hx-target="#user-{{ user.id }}" 
             hx-swap="outerHTML"
         >
@@ -57,4 +50,3 @@
         </form>
     </div>
 </div>
-{% endblock %}

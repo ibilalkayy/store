@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %} User Dashboard {% endblock %}
+
+{% block body %}
+<div class="flex min-h-screen p-8 gap-6">
+    <div class="w-1/4 bg-white shadow-md rounded-lg p-4 space-y-4">
+        <h2 class="text-lg font-semibold mb-4">User Menu</h2>
+        <ul class="space-y-2">
+            <li>
+                <a 
+                    href="#" 
+                    hx-get="/user/2"
+                    hx-target="#content"
+                    hx-swap="innerHTML"
+                    class="block py-2 px-3 rounded hover:bg-gray-100 text-blue-600"
+                >📍 User</a>
+            </li>
+            <li>
+                <a 
+                    href="#" 
+                    hx-target="#content"
+                    hx-swap="innerHTML"
+                    class="block py-2 px-3 rounded hover:bg-gray-100 text-blue-600"
+                >📍 Address</a>
+            </li>
+            <li>
+                <a 
+                    href="#"
+                    hx-target="#content"
+                    hx-swap="innerHTML"
+                    class="block py-2 px-3 rounded hover:bg-gray-100 text-blue-600"
+                >💳 Payment</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="flex-1 bg-white shadow-md rounded-lg p-6" id="content">
+        <p class="text-gray-500">Select an option on the left to view details.</p>
+    </div>
+</div>
+{% endblock %}
